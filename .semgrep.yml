@@ -300,6 +300,9 @@ rules:
       - pattern-not: |
           tags = keyvaluetags.$VALUETAGS($RESOURCETAGS).IgnoreAws().IgnoreConfig($CONFIG)
           ...
+      - pattern-not: |
+          tags = $VALUETAGS($RESOURCETAGS).IgnoreAWS().IgnoreConfig($CONFIG).Ignore($IGNORE)
+          ...
     severity: WARNING
 
   - id: helper-schema-ResourceData-SetId-empty-without-IsNewResource-check
