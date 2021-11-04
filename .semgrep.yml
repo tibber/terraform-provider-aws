@@ -283,22 +283,11 @@ rules:
               tags = $TAGS
               ...
               if err := d.Set("tags", $TAGSMAP); err != nil { ... }
-          - pattern: |
-              $ASGTAGS := keyvaluetags.AutoscalingKeyValueTags(...)
-              ...
-              if err := d.Set("tags", $TAGSMAP); err != nil { ... }
-      - pattern-not-regex: 'keyvaluetags.AutoscalingKeyValueTags\(.+\).IgnoreAws\(\).IgnoreConfig'
       - pattern-not: |
           tags = $KEYVALUETAGS.IgnoreAws().IgnoreConfig($CONFIG)
           ...
       - pattern-not: |
           tags = $KEYVALUETAGS.$IGNORESERVICE().IgnoreConfig($CONFIG)
-          ...
-      - pattern-not: |
-          tags := keyvaluetags.$VALUETAGS($RESOURCETAGS).IgnoreAws().IgnoreConfig($CONFIG)
-          ...
-      - pattern-not: |
-          tags = keyvaluetags.$VALUETAGS($RESOURCETAGS).IgnoreAws().IgnoreConfig($CONFIG)
           ...
       - pattern-not: |
           tags = $VALUETAGS($RESOURCETAGS).IgnoreAWS().IgnoreConfig($CONFIG).Ignore($IGNORE)
